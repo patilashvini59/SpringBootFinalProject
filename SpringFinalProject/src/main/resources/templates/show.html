@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org
+	xmlns:sec=http://www.thymeleaf.org/extras/spring-security
+	xmlns:shiro=http://www.pollix.at/thymeleaf/shiro>
+<style>
+#customers {
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#customers td, #customers th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+	background-color: #ddd;
+}
+
+#customers th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #04AA6D;
+	color: white;
+}
+</style>
+<body>
+	<h1>
+		<center>Student Details</center>
+	</h1>
+	<table id="customers">
+		<tr>
+			<th>Id</th>
+			<th>UseName</th>
+			<th>Password</th>
+			<th>Action</th>
+		</tr>
+		<tr th:each="stu: ${student}">
+			<td th:text="${stu.id}" />
+			<td th:text="${stu.userName}" />
+			<td th:text="${stu.passWord}" />
+			<td><button type="button" class="showbtn">
+					<a th:text="Delete" th:href="@{/delete(id=${stu.id})}">Delete</a>
+				</button>
+				<button type="button" class="showbtn">
+					<a th:text="Update" th:href="@{/showFormForUpdate(id=${stu.id})}">Update</a>
+				</button></td>
+		</tr>
+	</table>
+	<!-- <h1><span th:text="${student.userName}"></span></h1> -->
+	<br>
+	<button onclick="history.back()">Go Back</button>
+	<button type="button" class="showbtn"><a href="/login">Add Student</a></button> 
+</body>
+</html>
